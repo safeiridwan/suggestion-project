@@ -9,12 +9,12 @@ public class FullTextSearchService {
         String cityNameLowerCase = cityName.toLowerCase();
         String queryLowerCase = query.toLowerCase();
 
-        if (cityNameLowerCase.contains(queryLowerCase)) {
-            return 1.0;
-        }
+//        if (cityNameLowerCase.contains(queryLowerCase)) {
+//            return 1.0;
+//        }
 
         int matchWord = 0;
-        String[] splittedQuery = cityNameLowerCase.split("\\s+");
+        String[] splittedQuery = queryLowerCase.split("\\s+");
         for (String queryWord : splittedQuery) {
             if (cityNameLowerCase.contains(queryWord)) {
                 matchWord++;

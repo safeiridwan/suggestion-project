@@ -22,8 +22,9 @@ public class CityController {
             @RequestParam(name = "latitude", required = false) String latitude,
             @RequestParam(name = "longitude", required = false) String longitude
     ) {
-        double parsedQueryLat = (latitude == null || latitude.isEmpty()) ? 0.0 : Double.parseDouble(latitude);
-        double parsedQueryLon = (longitude == null || longitude.isEmpty()) ? 0.0 : Double.parseDouble(longitude);
+        System.out.println("query: " + query + " | latitude: " + latitude + " | longitude: " + longitude);
+        Double parsedQueryLat = (latitude == null || latitude.isEmpty()) ? null : Double.parseDouble(latitude);
+        Double parsedQueryLon = (longitude == null || longitude.isEmpty()) ? null : Double.parseDouble(longitude);
         return cityService.getSuggestionCities(query, parsedQueryLat, parsedQueryLon);
     }
 }

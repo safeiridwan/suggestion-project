@@ -30,15 +30,19 @@ The Haversine formula determines the great-circle distance between two points on
 ### Formula:
 ```shell
 public double haversineFormula(double lat1, double lon1, double lat2, double lon2) {
-    final int R = 6371; // Radius of the Earth in km
-    double dLat = Math.toRadians(lat2 - lat1);
-    double dLon = Math.toRadians(lon2 - lon1);
-    double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-               Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
-               Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c; // Distance in km
-}
+        final int R = 6371;
+        double dLat = degToRad(lat2 - lat1);
+        double dLon = degToRad(lon2 - lon1);
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(degToRad(lat1)) * Math.cos(degToRad(lat2)) *
+                        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return R * c;
+    }
+
+    public double degToRad(double val) {
+        return val * Math.PI * 180;
+    }
 ```
 
 ### Distance Score Calculation

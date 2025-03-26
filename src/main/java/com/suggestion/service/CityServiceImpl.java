@@ -33,7 +33,7 @@ public class CityServiceImpl implements CityService {
                         calculateScore(city, query, latitude, longitude)
                 ))
                 .sorted(Comparator.comparingDouble(CityOut::getScore).reversed())
-                .limit(10)
+                .limit(5)
                 .toList();
     }
 
@@ -56,11 +56,11 @@ public class CityServiceImpl implements CityService {
         double searchScore = fullTextSearchService.getSearchScore(cityName, query);
         if (queryLat != null && queryLon != null) {
             double distanceScore = geoSpatialService.getDistanceScore(cityName, queryLat, queryLon, cityLat, cityLon);
-            logger.info("city name: {} | fullTextSearchScore: {} | distanceScore: {}", city.getGeoName(), searchScore, distanceScore);
+//            logger.info("city name: {} | fullTextSearchScore: {} | distanceScore: {}", city.getGeoName(), searchScore, distanceScore);
             return 0.7 * searchScore + 0.3 * distanceScore;
         }
 
-        logger.info("city name: {} | fullTextSearchScore: {}", city.getGeoName(), searchScore);
+//        logger.info("city name: {} | fullTextSearchScore: {}", city.getGeoName(), searchScore);
         return searchScore;
     }
 

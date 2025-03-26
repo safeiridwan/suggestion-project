@@ -22,7 +22,7 @@ public class CityServiceImpl implements CityService {
     private final GeoSpatialService geoSpatialService;
 
     @Override
-    public List<CityOut> getSuggestionCities(String query, String latitude, String longitude) {
+    public List<CityOut> getSuggestionCities(String query, double latitude, double longitude) {
         return cityRepository.findAll().stream()
                 .filter(city -> city.getName().toLowerCase().contains(query.toLowerCase()))
                 .map(city -> new CityOut(
@@ -41,15 +41,13 @@ public class CityServiceImpl implements CityService {
         alpha = 0.7 (alpha greater than beta, assuming search by word is more important than proximity)
         beta = 0.3
      */
-    private double calculateScore(City city, String query, String queryLat, String queryLon) {
+    private double calculateScore(City city, String query, double queryLat, double queryLon) {
         String cityName = city.getName();
         double cityLat = city.getLatitude();
         double cityLon = city.getLongitude();
 
         double searchScore = fullTextSearchService.getSearchScore(cityName, query);
-        double parsedQueryLat = (queryLat == null || queryLat.isEmpty()) ? 0.0 : Double.parseDouble(queryLat);
-        double parsedQueryLon = (queryLon == null || queryLon.isEmpty()) ? 0.0 : Double.parseDouble(queryLon);
-        double distanceScore = geoSpatialService.getDistanceScore(cityName, parsedQueryLat, parsedQueryLon, cityLat, cityLon);
+        double distanceScore = geoSpatialService.getDistanceScore(cityName, queryLat, queryLon, cityLat, cityLon);
 
         logger.info("city name: {} | fullTextSearchScore: {} | distanceScore: {}", city.getGeoName(), searchScore, distanceScore);
 

@@ -61,6 +61,9 @@ public double getDistanceScore(double distance, double maxDistance) {
 | longitude  | string  | User's current longitude (optional) |
 
 ### Example Request:
+```
+GET /api/v1/suggestions?q=toronto&latitude=43.7&longitude=-79.42
+```
 
 ### Example Response:
 ```
@@ -83,3 +86,9 @@ public double getDistanceScore(double distance, double maxDistance) {
 ```
 
 ### Response Fields:
+| Field  | Type  | Description | 
+| ---------- | ----- | ----------- | 
+| name  | string  | City name and country |
+| latitude  | double  | City's latitude |
+| longitude  | double  | City's longitude |
+| score  | double  | Final calculated score |

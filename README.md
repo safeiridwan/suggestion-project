@@ -51,7 +51,10 @@ public double getDistanceScore(double distance, double maxDistance) {
 # API Documentation
 ## 1. Search Cities with Score
 
-## Endpoint: GET /api/v1/suggestions
+## Endpoint: 
+```
+GET /api/v1/suggestions
+```
 
 ### Query Parameters:
 | Parameter  | Type  | Description | 

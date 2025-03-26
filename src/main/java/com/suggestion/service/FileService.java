@@ -42,7 +42,14 @@ public class FileService {
                         lon = Double.parseDouble(parts[5]);
                     }
 
-                    cities.add(new City(parts[0], parts[2], lat, lon, countryName, parts[8], parts[10]));
+                    StringBuilder geoName = new StringBuilder();
+                    geoName.append(parts[2]);
+                    if (parts[10] != null && !parts[10].isEmpty()) {
+                        geoName.append(", ").append(parts[10]);
+                    }
+                    geoName.append(", ").append(countryName);
+
+                    cities.add(new City(parts[0], parts[2], lat, lon, countryName, parts[8], parts[10], geoName.toString()));
                 }
             }
         } catch (IOException e) {

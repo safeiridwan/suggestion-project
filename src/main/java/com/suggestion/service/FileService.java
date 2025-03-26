@@ -30,9 +30,19 @@ public class FileService {
             br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("\t");
-                if (parts.length >= 5) {
+                if (parts.length >= 10) {
                     String countryName = parts[8].equals("CA") ? "Canada" : "USA";
-                    cities.add(new City(parts[0], parts[2], parts[4], parts[5], countryName, parts[8], parts[9]));
+                    double lat = 0.0;
+                    if (parts[4] != null && !parts[4].isEmpty()) {
+                        lat = Double.parseDouble(parts[4]);
+                    }
+
+                    double lon = 0.0;
+                    if (parts[5] != null && !parts[5].isEmpty()) {
+                        lon = Double.parseDouble(parts[5]);
+                    }
+
+                    cities.add(new City(parts[0], parts[2], lat, lon, countryName, parts[8], parts[10]));
                 }
             }
         } catch (IOException e) {

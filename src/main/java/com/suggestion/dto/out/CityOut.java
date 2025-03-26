@@ -10,13 +10,13 @@ import java.io.Serializable;
 @Setter
 public class CityOut implements Serializable {
     private String name;
-    private String latitude;
-    private String longitude;
+    private double latitude;
+    private double longitude;
     private Double score;
 
     public CityOut() {}
 
-    public CityOut(String name, String latitude, String longitude, Double score) {
+    public CityOut(String name, double latitude, double longitude, Double score) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;

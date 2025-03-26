@@ -8,8 +8,8 @@ import lombok.Setter;
 public class City {
     private String geonameId;
     private String name;
-    private String latitude;
-    private String longitude;
+    private Double latitude;
+    private Double longitude;
     private String countryName;
     private String countryCode;
     private String altCountryCode;
@@ -18,7 +18,7 @@ public class City {
 
     }
 
-    public City(String geonameId, String name, String latitude, String longitude, String countryName, String countryCode, String altCountryCode) {
+    public City(String geonameId, String name, Double latitude, Double longitude, String countryName, String countryCode, String altCountryCode) {
         this.geonameId = geonameId;
         this.name = name;
         this.latitude = latitude;

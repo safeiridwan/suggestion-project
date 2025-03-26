@@ -20,7 +20,7 @@ public class FileService {
         System.out.println("Cities loaded: " + cities.size());
     }
 
-    public void loadCities() {
+    private void loadCities() {
         String filePath = "files/cities_canada-usa.tsv";
         ClassLoader classLoader = getClass().getClassLoader();
         try (InputStream is = classLoader.getResourceAsStream(filePath);

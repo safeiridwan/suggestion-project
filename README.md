@@ -20,7 +20,7 @@ The scoring system combines a full-text search score (text similarity) and a loc
 ```shell
 finalScore = (textScore * 0.7) + (distanceScore * 0.3);
 ```
-- Text Score (70%): Measures how well the search query matches city names using text similarity algorithms (e.g., Levenshtein Distance, TF-IDF, or Elasticsearch full-text search).
+- Text Score (70%): Measures how well the search query matches city names using text similarity algorithms (e.g., Levenshtein Distance, TF-IDF, or Elasticsearch full-text search). Set to 70% assuming search by word is more important than proximity.
 - Distance Score (30%): Uses the Haversine formula to compute geographical proximity between two locations.
 
 ## Haversine Formula (Distance Calculation)
@@ -47,3 +47,39 @@ public double getDistanceScore(double distance, double maxDistance) {
     return 1 - (distance / maxDistance);
 }
 ```
+
+# API Documentation
+## 1. Search Cities with Score
+
+## Endpoint: GET /api/v1/suggestions
+
+### Query Parameters:
+| Parameter  | Type  | Description | 
+| ---------- | ----- | ----------- | 
+| q  | string  | The search query for city name |
+| latitude  | string  | User's current latitude (optional) |
+| longitude  | string  | User's current longitude (optional) |
+
+### Example Request:
+
+### Example Response:
+```
+{
+  "suggestions": [
+    {
+      "name": "Toronto, ON, Canada",
+      "latitude": 43.70011,
+      "longitude": -79.4163,
+      "score": 0.92
+    },
+    {
+      "name": "Toronto, KS, USA",
+      "latitude": 38.2,
+      "longitude": -95.92,
+      "score": 0.78
+    }
+  ]
+}
+```
+
+### Response Fields:

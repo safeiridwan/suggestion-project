@@ -26,8 +26,18 @@ finalScore = (textScore * 0.7) + (distanceScore * 0.3);
 ## Haversine Formula (Distance Calculation)
 
 The Haversine formula determines the great-circle distance between two points on a sphere given their latitudes and longitudes.
+Source: https://www.movable-type.co.uk/scripts/latlong.html
 
 ### Formula:
+```
+Haversine
+formula: 	a = sin²(Δφ/2) + cos φ1 ⋅ cos φ2 ⋅ sin²(Δλ/2)
+c = 2 ⋅ atan2( √a, √(1−a) )
+d = R ⋅ c
+where: 	φ is latitude, λ is longitude, R is earth’s radius (mean radius = 6,371km);
+note that angles need to be in radians to pass to trig functions!
+```
+
 ```shell
 public double haversineFormula(double lat1, double lon1, double lat2, double lon2) {
         final int R = 6371;
